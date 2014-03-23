@@ -1,9 +1,12 @@
 require "uri"
+require "sakuran"
 
 namespace :scheduler do
 
   desc "Get sakura tweets"
   task :search_sakura_tweets => :environment do
+  	include Sakuran::Estimator
+
     logger = Logger.new("log/sakura_tweets_#{Time.now.strftime('%Y_%m_%d_%H_%M')}.log")
     start_time = Time.now
     logger.info "search_sakura_tweets at #{start_time}"
@@ -31,7 +34,8 @@ namespace :scheduler do
 					tweet_created_at: result.created_at,
 					lat: result.geo.lat,
 					lon: result.geo.long,
-					url: _url_
+					url: _url_,
+					rating: rate_of(result.text)
 				)
 				tweet.save!
 				logger.info "ID: #{result.id}"
