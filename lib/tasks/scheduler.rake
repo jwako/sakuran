@@ -26,6 +26,7 @@ namespace :scheduler do
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
 			if result.geo.present?
 				_url_ = URI.extract(result.text).blank? ? "" : URI.extract(result.text)[0]
+				geo = Sakuran::Geo.new(:latitude => result.geo.lat, :longitude => result.geo.long, :lang => :ja)
 				tweet = Tweet.new(
 					tweet_id: result.id,
 					text: result.text,
@@ -35,7 +36,9 @@ namespace :scheduler do
 					lat: result.geo.lat,
 					lon: result.geo.long,
 					url: _url_,
-					rating: rate_of(result.text)
+					rating: rate_of(result.text),
+					prefecture: geo.prefecture,
+					city: geo.city
 				)
 				tweet.save!
 				logger.info "ID: #{result.id}"

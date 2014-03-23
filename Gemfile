@@ -38,6 +38,8 @@ gem 'grape-rabl'
 
 gem "bower-rails", "~> 0.7.1"
 
+gem "geocoder"
+
 # RSpec
 group :test, :development do
   gem "rspec-rails", '~> 2.14.1'
