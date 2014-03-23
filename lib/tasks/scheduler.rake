@@ -19,7 +19,7 @@ namespace :scheduler do
 			count: 100, 
 			result_type: "mixed", 
 			lang: 'ja', 
-			since_id: Tweet.last.tweet_id
+			# since_id: Tweet.last.tweet_id
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
 			if result.geo.present?
 				_url_ = URI.extract(result.text).blank? ? "" : URI.extract(result.text)[0]
