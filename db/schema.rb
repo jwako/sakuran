@@ -11,9 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140323033907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tweets", force: true do |t|
+    t.integer  "tweet_id",         limit: 8
+    t.string   "text"
+    t.integer  "user_id",          limit: 8
+    t.string   "screen_name"
+    t.date     "tweet_created_at"
+    t.decimal  "lat",                        precision: 13, scale: 10
+    t.decimal  "lon",                        precision: 13, scale: 10
+    t.string   "url"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tweets", ["rating"], name: "index_tweets_on_rating", using: :btree
+  add_index "tweets", ["tweet_id"], name: "index_tweets_on_tweet_id", using: :btree
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
 end

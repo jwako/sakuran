@@ -19,5 +19,18 @@ module Sakuran
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Test framework
+    config.generators.test_framework :rspec
+    
+    # For grape
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    config.autoload_paths += Dir["#{Rails.root}/app"]
+
+    # For grape-rable
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = Rails.root.join "app", "views", "api"
+    end
+
   end
 end

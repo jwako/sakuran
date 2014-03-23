@@ -32,6 +32,43 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'twitter', '>= 5.8.0'
+gem 'grape'
+gem 'grape-rabl'
+
+gem "bower-rails", "~> 0.7.1"
+
+# RSpec
+group :test, :development do
+  gem "rspec-rails", '~> 2.14.1'
+  gem 'factory_girl_rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-debugger'
+  gem 'quiet_assets'
+  gem 'sextant'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem "mocha", :require => 'mocha/api'
+  gem 'rack-test'
+end
+
+# Capybara
+group :test do
+  gem "capybara", '~> 2.2.1'
+  gem 'webmock'
+  gem "shoulda-matchers"
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-spork'
+  gem 'spork', '~> 1.0rc'  
+  gem 'database_cleaner'
+  gem 'meta_request', '0.2.1'
+  gem 'fuubar'  
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
