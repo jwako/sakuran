@@ -7,3 +7,5 @@ asset 'angular'
 asset 'angular-bootstrap'
 asset 'bootstrap'
 asset 'bootflatv2'
+asset 'angular-google-maps'
+

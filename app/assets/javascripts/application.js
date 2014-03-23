@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require angular
 //= require angular-bootstrap
+//= require underscore/underscore-min
+//= require angular-google-maps
 //= require app.js
 //= require_tree .

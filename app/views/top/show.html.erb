@@ -1,2 +1,5 @@
-<h1>Top#show</h1>
-<p>Find me in app/views/top/show.html.erb</p>
+<div id="map" ng-controller="MapCtrl">
+	<google-map center="map.center" zoom="map.zoom">
+		<marker ng-repeat="item in items" coords="item"></marker>
+	</google-map>
+</div>
