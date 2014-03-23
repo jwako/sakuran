@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Sakuran</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
+<body style="background-color: rgb(241, 242, 246);">
+  <div id="wrap">
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    
+    <div class="topic">  
+    <div class="container" ng-app="sakuranApp">
+       
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+          <%= render 'layouts/messages' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <%= yield %>
+        </div>     
+      </div>  
+      
+    </div>
+    </div>
+  </div>
+    
+  <%= render 'layouts/footer' %>    
 
 </body>
 </html>

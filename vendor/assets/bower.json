@@ -1,0 +1,11 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "jquery": "latest",
+    "jquery-ujs": "latest",
+    "angular": "latest",
+    "angular-bootstrap": "latest",
+    "bootstrap": "latest",
+    "bootflatv2": "latest"
+  }
+}
