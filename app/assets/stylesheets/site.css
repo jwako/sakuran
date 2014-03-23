@@ -1,1 +1,34 @@
+.navbar-brand {
+	color: #FFF !important; 
+}
+
+.navbar-custom {
+	position: fixed;
+	top: 0;
+	left: 0;
+	border: none;
+	border-radius: 0;
+	background-color: #EC87C0;
+	width: 100%;
+	z-index: 2000;
+}
+
+.topic {
+	position: relative;
+	padding: 55px 0 110px;
+}
+
 .angular-google-map-container { height: 580px; }
+
+.marker-labels {
+  color: red;
+  background-color: white;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  width: 40px;
+  border: 1px solid black;
+  white-space: nowrap;
+}
+

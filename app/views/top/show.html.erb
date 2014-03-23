@@ -1,5 +1,10 @@
 <div id="map" ng-controller="MapCtrl">
-	<google-map center="map.center" zoom="map.zoom">
-		<marker ng-repeat="item in items" coords="item"></marker>
+	<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging">
+		<markers models="items" coords="'self'" icon="'icon'">
+      <windows>
+        <p ng-non-bindable>{{text}}</p>
+        <a ng-non-bindable href="{{url}}">{{url}}</a>
+      </windows>
+		</markers>
 	</google-map>
 </div>

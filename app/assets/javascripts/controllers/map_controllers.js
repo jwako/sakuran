@@ -8,12 +8,11 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
         longitude: 139.4505
     },
     zoom: 6,
-    refresh: true,
-    draggable: true
+    dragging: true
 	};
 	$http.get('/v1/tweets').success(function(data) {
 		for (var i = 0; i < data.length; i++) {
-	  	$scope.items.push({ "latitude" : data[i].lat, "longitude" : data[i].lon});
+	  	$scope.items.push({ latitude: data[i].lat, longitude: data[i].lon, text: data[i].text, url: data[i].url, icon: '/assets/sakura.png' });
 	  }
   });
 });
