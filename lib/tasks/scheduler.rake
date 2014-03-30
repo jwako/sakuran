@@ -48,8 +48,7 @@ namespace :scheduler do
 			count: 100, 
 			result_type: "mixed", 
 			lang: 'ja', 
-			since_id: 447170187952148480,
-			# since_id: Tweet.last.tweet_id,
+			since_id: Tweet.last.tweet_id,
 			include_entities: true
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
 			if result.geo.present? && available_service?(result)
