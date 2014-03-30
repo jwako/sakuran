@@ -1,7 +1,13 @@
 <div class="row">
 <div class="col-xs-12 col-md-6">
 	<div id="map" ng-controller="MapCtrl">
-		<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging">
+		<google-map 
+			center="map.center" 
+			zoom="map.zoom" 
+			draggable="true" 
+			dragging="map.dragging" 
+			events="map.events" 
+			control="map.control">
 			<markers models="items" coords="'self'" icon="'icon'">
 	      <windows>
 	        <img ng-non-bindable src="{{url}}" width="200px;" class="img-responsive" />
@@ -11,5 +17,13 @@
 	</div>
 </div>
 
-<div class="col-xs-12 col-md-6"></div>
+<div class="col-xs-12 col-md-6">
+	<div id="gallery" ng-controller="GalleryCtrl">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="item in items">
+				<img ng-src="{{item.image_url}}" class="img-thumbnail img-space">
+		  </div>
+	  </div>
+	</div>
+</div>
 </div>
