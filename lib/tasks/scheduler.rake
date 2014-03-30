@@ -76,4 +76,13 @@ namespace :scheduler do
     logger.info "Duration: #{(end_time - start_time).round(1)} sec."
   end
 
+	desc "Get sakura tweets"
+  task :remove_duplicated_tweets => :environment do
+  	ids = Tweet.all.uniq.pluck(:tweet_id)
+  	ids.each do |tweet_id|
+  		tweets = Tweet.where(tweet_id: tweet_id).order("id DESC")
+  		tweets.first.destroy if tweets.count > 1
+  	end
+  end
+
 end
