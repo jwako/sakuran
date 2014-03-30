@@ -12,7 +12,7 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
 	};
 	$http.get('/v1/tweets').success(function(data) {
 		for (var i = 0; i < data.length; i++) {
-	  	$scope.items.push({ latitude: data[i].lat, longitude: data[i].lon, text: data[i].text, url: data[i].url, icon: '/assets/sakura.png' });
+	  	$scope.items.push({ latitude: data[i].lat, longitude: data[i].lon, text: data[i].text, url: data[i].url, icon: '/assets/flower.png' });
 	  }
   });
 });

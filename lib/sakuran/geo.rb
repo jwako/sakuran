@@ -13,11 +13,19 @@ module Sakuran
 		end
 
 		def prefecture
-			@address[0].address_components.reverse[1]["long_name"]
+			if @address[0].blank? || @address[0].address_components.reverse[1].nil?
+				""
+			else
+				@address[0].address_components.reverse[1]["long_name"]
+			end
 		end
 
 		def city
-			@address[0].address_components.reverse[2]["long_name"]
+			if @address[0].blank? || @address[0].address_components.reverse[2].nil?
+				""
+			else
+				@address[0].address_components.reverse[2]["long_name"]
+			end
 		end
 
 	end

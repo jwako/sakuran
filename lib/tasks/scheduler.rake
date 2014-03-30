@@ -22,10 +22,11 @@ namespace :scheduler do
 			count: 100, 
 			result_type: "mixed", 
 			lang: 'ja', 
-			since_id: Tweet.last.tweet_id
+			since_id: Tweet.last.tweet_id,
+			include_entities: true
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
 			if result.geo.present?
-				_url_ = URI.extract(result.text).blank? ? "" : URI.extract(result.text)[0]
+				_url_ = result.media[0].blank? ? "" : result.media[0].media_url.to_s
 				geo = Sakuran::Geo.new(:latitude => result.geo.lat, :longitude => result.geo.long, :lang => :ja)
 				tweet = Tweet.new(
 					tweet_id: result.id,
