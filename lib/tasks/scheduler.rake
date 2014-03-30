@@ -3,6 +3,32 @@ require "sakuran"
 
 namespace :scheduler do
 
+	def available_service?(result)
+		is_twitter?(result) || is_instagram?(result)
+	end
+
+	def is_twitter?(result)
+		if result.media[0].present? && result.media[0].expanded_url.present? && result.media[0].expanded_url.to_s.include?("twitter.com")
+			return true
+		else
+			return false
+		end
+	end
+
+	def is_instagram?(result)
+		if result.urls[0].present? && result.urls[0].expanded_url.present? && result.urls[0].expanded_url.to_s.include?("instagram.com")
+			return true
+		else
+			return false
+		end
+	end
+
+	def get_image_url(result)
+		return result.media[0].media_url.to_s if is_twitter?(result)
+		return result.urls[0].expanded_url.to_s + "media" if is_instagram?(result)
+		return ""
+	end
+
   desc "Get sakura tweets"
   task :search_sakura_tweets => :environment do
   	include Sakuran::Estimator
@@ -18,15 +44,15 @@ namespace :scheduler do
 		  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 		end
 
-		client.search("#桜2014 OR 桜 OR サクラ開花 filter:links", 
+		client.search("#桜2014 OR #桜 OR #花見 filter:links", 
 			count: 100, 
 			result_type: "mixed", 
 			lang: 'ja', 
-			since_id: Tweet.last.tweet_id,
+			since_id: 447170187952148480,
+			# since_id: Tweet.last.tweet_id,
 			include_entities: true
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
-			if result.geo.present?
-				_url_ = result.media[0].blank? ? "" : result.media[0].media_url.to_s
+			if result.geo.present? && available_service?(result)
 				geo = Sakuran::Geo.new(:latitude => result.geo.lat, :longitude => result.geo.long, :lang => :ja)
 				tweet = Tweet.new(
 					tweet_id: result.id,
@@ -36,7 +62,7 @@ namespace :scheduler do
 					tweet_created_at: result.created_at,
 					lat: result.geo.lat,
 					lon: result.geo.long,
-					url: _url_,
+					url: get_image_url(result),
 					rating: rate_of(result.text),
 					prefecture: geo.prefecture,
 					city: geo.city
