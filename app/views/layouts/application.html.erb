@@ -15,21 +15,15 @@
       <%= render 'layouts/navigation' %>
     </header>
     
-    <div class="topic">  
-    <div class="container" ng-app="sakuranApp">
+    <div class="topic">
+    <div class="container-fluid" ng-app="sakuranApp">
        
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center">
           <%= render 'layouts/messages' %>
         </div>
       </div>
-      
-      <div class="row">
-        <div class="col-sm-12">
-          <%= yield %>
-        </div>     
-      </div>  
-      
+      <%= yield %>
     </div>
     </div>
   </div>

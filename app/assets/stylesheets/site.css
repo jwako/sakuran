@@ -15,7 +15,7 @@
 
 .topic {
 	position: relative;
-	padding: 55px 0 110px;
+	padding: 55px 0 0 0;
 }
 
 .angular-google-map-container { height: 580px; }

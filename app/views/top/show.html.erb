@@ -1,10 +1,16 @@
-<div id="map" ng-controller="MapCtrl">
-	<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging">
-		<markers models="items" coords="'self'" icon="'icon'">
-      <windows>
-        <p ng-non-bindable>{{text}}</p>
-        <a ng-non-bindable href="{{url}}">{{url}}</a>
-      </windows>
-		</markers>
-	</google-map>
+<div class="row">
+<div class="col-xs-12 col-md-6">
+	<div id="map" ng-controller="MapCtrl">
+		<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging">
+			<markers models="items" coords="'self'" icon="'icon'">
+	      <windows>
+	        <p ng-non-bindable>{{text}}</p>
+	        <img ng-non-bindable src="{{url}}" class="img-responsive img-thumbnail" />
+	      </windows>
+			</markers>
+		</google-map>
+	</div>
+</div>
+
+<div class="col-xs-12 col-md-6"></div>
 </div>

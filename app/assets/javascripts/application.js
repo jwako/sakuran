@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ujs/src/rails
 //= require turbolinks
+//= require bootstrap
 //= require angular
 //= require angular-bootstrap
 //= require underscore/underscore-min
