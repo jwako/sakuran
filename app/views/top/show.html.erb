@@ -7,12 +7,16 @@
 			draggable="true" 
 			dragging="map.dragging" 
 			events="map.events" 
-			control="map.control">
-			<markers models="items" coords="'self'" icon="'icon'">
-	      <windows>
-	        <img ng-non-bindable src="{{url}}" width="200px;" class="img-responsive" />
-	      </windows>
-			</markers>
+			control="map.control" 
+			refresh="true">
+			<marker ng-repeat="marker in map.markers" 
+          coords="marker.mcoords"
+          icon="marker.icon"
+          click="onMarkerClicked(marker)">
+        <window show="marker.showWindow">
+          <img ng-src="{{marker.url}}" width="200px;" class="img-responsive" />
+        </window>
+      </marker>
 		</google-map>
 	</div>
 </div>

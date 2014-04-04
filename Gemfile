@@ -39,6 +39,7 @@ gem 'grape-rabl'
 gem "bower-rails", "~> 0.7.1"
 
 gem "geocoder"
+gem 'kaminari'
 
 # RSpec
 group :test, :development do

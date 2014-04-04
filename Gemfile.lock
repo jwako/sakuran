@@ -134,6 +134,9 @@ GEM
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     json (1.8.1)
+    kaminari (0.15.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (2.7.1)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
@@ -310,6 +313,7 @@ DEPENDENCIES
   hirb
   hirb-unicode
   jbuilder (~> 1.2)
+  kaminari
   meta_request (= 0.2.1)
   mocha
   pg
