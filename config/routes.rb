@@ -4,6 +4,6 @@ Sakuran::Application.routes.draw do
 
   root :to => 'top#show'
 
-	resources :admin, :only => [:index, :show]
+	resources :admin, :only => [:index, :create]
 
 end

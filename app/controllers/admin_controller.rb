@@ -5,9 +5,11 @@ class AdminController < ApplicationController
   	@tweets = Tweet.order(:id).page(no).per(100)
   end
 
-  def show
-  	@tweet = Tweet.find(params[:id])
-  	@tweet.destroy
+  def create
+  	@tweets = Tweet.find(params[:ids])
+  	@tweets.each do |tweet|
+  		tweet.destroy
+  	end
   	redirect_to admin_index_path
   end
 end
