@@ -1,17 +1,12 @@
-(function () {
-    var module = angular.module("angular-google-maps-example", ["google-maps"]);
-}());
-
-var rndAddToLatLon = function () {
+angular.module("angular-google-maps-example", ["google-maps"]).value("rndAddToLatLon",
+        function () {
     return Math.floor(((Math.random() < 0.5 ? -1 : 1) * 2) + 1)
-}
-
-function ExampleController($scope, $timeout, $log, $http) {
+}).controller("controller", function ($scope, $timeout, $log, $http, rndAddToLatLon) {
     // Enable the new Google Maps visuals until it gets enabled by default.
     // See http://googlegeodevelopers.blogspot.ca/2013/05/a-fresh-new-look-for-maps-api-for-all.html
     google.maps.visualRefresh = true;
 
-    versionUrl = window.location.host === "rawgithub.com" ? "http://rawgithub.com/nlaplante/angular-google-maps/master/package.json" : "/package.json";
+    var versionUrl = window.location.host === "rawgithub.com" ? "http://rawgithub.com/nlaplante/angular-google-maps/master/package.json" : "/package.json";
 
     $http.get(versionUrl).success(function (data) {
         if (!data)
@@ -49,7 +44,7 @@ function ExampleController($scope, $timeout, $log, $http) {
 
     angular.extend($scope, {
         map: {
-            control:{},
+            control: {},
             version: "uknown",
             heatLayerCallback: function (layer) {
                 //set the heat layers backend data
@@ -66,8 +61,8 @@ function ExampleController($scope, $timeout, $log, $http) {
             options: {
                 streetViewControl: false,
                 panControl: false,
-                maxZoom:20,
-                minZoom:3
+                maxZoom: 20,
+                minZoom: 3
             },
             zoom: 3,
             dragging: false,
@@ -86,7 +81,7 @@ function ExampleController($scope, $timeout, $log, $http) {
                     title: 'Marker 2'
                 },
                 {
-                    icon: 'plane.png',
+                    icon: 'assets/images/plane.png',
                     latitude: 37,
                     longitude: -122,
                     showWindow: false,
@@ -107,7 +102,7 @@ function ExampleController($scope, $timeout, $log, $http) {
                     title: '[33,-77]'
                 },
                 {
-                    icon: 'plane.png',
+                    icon: 'assets/images/plane.png',
                     latitude: 35,
                     longitude: -125,
                     showWindow: false,
@@ -130,10 +125,15 @@ function ExampleController($scope, $timeout, $log, $http) {
             ],
             dynamicMarkers: [],
             randomMarkers: [],
+	    clickMarkers: [
+		{"latitude": 50.948968, "longitude": 6.944781}
+		,{"latitude": 50.94129, "longitude": 6.95817}
+		,{"latitude": 50.9175, "longitude": 6.943611}
+	    ],
             doClusterRandomMarkers: true,
             doUgly: true, //great name :)
             clusterOptions: {title: 'Hi I am a Cluster!', gridSize: 60, ignoreHidden: true, minimumClusterSize: 2,
-                imageExtension: 'png', imagePath: 'http://localhost:3000/example/cluster', imageSizes: [72]},
+                imageExtension: 'png', imagePath: 'assets/images/cluster', imageSizes: [72]},
             clickedMarker: {
                 title: 'You clicked here',
                 latitude: null,
@@ -180,8 +180,8 @@ function ExampleController($scope, $timeout, $log, $http) {
                     latitude: 36.270850,
                     longitude: -44.296875
                 },
-                options:{
-                    disableAutoPan:true
+                options: {
+                    disableAutoPan: true
                 },
                 show: false
             },
@@ -190,7 +190,7 @@ function ExampleController($scope, $timeout, $log, $http) {
                     latitude: 36.270850,
                     longitude: -44.296875
                 },
-                options:{
+                options: {
                     boxClass: 'custom-info-window'
                 },
                 show: true
@@ -200,11 +200,11 @@ function ExampleController($scope, $timeout, $log, $http) {
                     latitude: 48.654686,
                     longitude: -75.937500
                 },
-                options:{
-                    disableAutoPan:true
+                options: {
+                    disableAutoPan: true
                 },
                 show: true,
-                templateUrl: 'templates/info.html',
+                templateUrl: 'assets/templates/info.html',
                 templateParameter: {
                     message: 'passed in from the opener'
                 }
@@ -308,14 +308,14 @@ function ExampleController($scope, $timeout, $log, $http) {
         $scope.map.templatedInfoWindow.show = false;
         // $scope.map.infoWindow.coords = null;
     };
-    $scope.refreshMap = function() {
+    $scope.refreshMap = function () {
         //optional param if you want to refresh you can pass null undefined or false or empty arg
-        $scope.map.control.refresh({latitude:32.779680,longitude:-79.935493});
+        $scope.map.control.refresh({latitude: 32.779680, longitude: -79.935493});
         $scope.map.control.getGMap().setZoom(11);
         return;
     };
-    $scope.getMapInstance = function() {
-       alert("You have Map Instance of" + $scope.map.control.getGMap().toString());
+    $scope.getMapInstance = function () {
+        alert("You have Map Instance of" + $scope.map.control.getGMap().toString());
         return;
     }
     $scope.map.clusterOptionsText = JSON.stringify($scope.map.clusterOptions);
@@ -357,9 +357,22 @@ function ExampleController($scope, $timeout, $log, $http) {
     }
     $scope.onMarkerClicked = onMarkerClicked;
 
+    $scope.clackMarker = function($markerModel) {
+      $log.log("from clackMarker");
+	    $log.log($markerModel);
+    };
+
     $timeout(function () {
+        $scope.map.polylines[0].path.push({
+              latitude: 61,
+              longitude: -105
+          });
+          $scope.map.polylines[0].path.push({
+              latitude: 70,
+              longitude: -105
+        });
         $scope.map.infoWindow.show = true;
-        dynamicMarkers = [
+        var dynamicMarkers = [
             {
                 latitude: 46,
                 longitude: -79,
@@ -371,7 +384,7 @@ function ExampleController($scope, $timeout, $log, $http) {
                 showWindow: false
             },
             {
-                icon: 'plane.png',
+                icon: 'assets/images/plane.png',
                 latitude: 35,
                 longitude: -127,
                 showWindow: false
@@ -388,4 +401,4 @@ function ExampleController($scope, $timeout, $log, $http) {
         });
         $scope.map.dynamicMarkers = dynamicMarkers;
     }, 2000);
-}
+});

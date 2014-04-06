@@ -1,15 +1,20 @@
 /*
- * Copyright 2013 FLATHEMES.
+ * Bootflat 2.0.1
  *
- * Bootflat, v2.0.0
- * A open source Flat UI KIT based on Twitter Bootstrap 3.1.0 css framework. 
- * http://http://bootflat.github.io/
+ * Description: BOOTFLAT is an open source Flat UI KIT based on Bootstrap 3.1.0 CSS framework. It provides a faster, easier and less repetitive way for web developers to create elegant web apps.
  *
- * By @flathemes
+ * Homepage: http://bootflat.github.com/
+ *
+ * By @Flathemes <info@flathemes.com>
+ *
+ * Last modify time: 2014-04-03
  *
  * Licensed under the MIT license. Please see LICENSE for more information.
  *
+ * Copyright 2013 FLATHEMES.
+ *
  */
+
 /**
  * typography
  * --------------------------------------------------
@@ -748,6 +753,11 @@ blockquote {
   padding-left: 0;
 }
 
+.checkbox label, .radio label {
+  position: relative;
+  top: 2px;
+}
+
 .icheckbox_flat,
 .iradio_flat {
   display: inline-block;
@@ -1376,6 +1386,9 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+.thumbnail a > img, .thumbnail > img {
+  width: 100%;
+}
 .thumbnail .caption {
   font-size: 14px;
 }
@@ -1418,6 +1431,10 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
+}
+.jumbotron .carousel-inner > .item > a > img,
+.jumbotron .carousel-inner > .item > img {
+  width: 100%;
 }
 .jumbotron .carousel-control.left {
   -webkit-border-radius: 4px 0 0 0;

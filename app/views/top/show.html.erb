@@ -23,11 +23,9 @@
 
 <div class="col-xs-12 col-md-6">
 	<div id="gallery" ng-controller="GalleryCtrl">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="item in items">
-				<img ng-src="{{item.image_url}}" class="img-thumbnail img-space">
-		  </div>
-	  </div>
+  	<div class="thumb col-xs-12 col-sm-6 col-md-4" ng-repeat="item in items">
+			<img ng-src="{{item.image_url}}" class="img-thumbnail img-responsive">
+  	</div>
 	</div>
 </div>
 </div>
