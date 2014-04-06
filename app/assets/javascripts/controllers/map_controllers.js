@@ -9,7 +9,7 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
     marker.showWindow = true;
   };
 
-  var makeMarker = function(lat,lon,text,url) {
+  var makeMarker = function(lat,lon,text,url,screen_name,tweet_created_at,tweet_url) {
     var marker = {
       mcoords: {
         latitude: lat,
@@ -17,6 +17,9 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
       },
       text: text,
       url: url,
+      screen_name: screen_name,
+      tweet_created_at: tweet_created_at,
+      tweet_url: tweet_url,
       icon: '/assets/flower.png',
       showWindow: false
     };
@@ -47,7 +50,16 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
 		    gallery_scope.items = [];
 		    $http.get('/v1/tweets?ne_lat='+map_ne_lat+'&sw_lat='+map_sw_lat+'&ne_lng='+map_ne_lng+'&sw_lng='+map_sw_lng).success(function(data) {
 					for (var i = 0; i < data.length; i++) {
-						$scope.map.markers.push(makeMarker(data[i].lat, data[i].lon, data[i].text, data[i].url));
+						$scope.map.markers.push(
+							makeMarker(
+								data[i].lat, 
+								data[i].lon, 
+								data[i].text, 
+								data[i].url, 
+								data[i].screen_name, 
+								data[i].tweet_created_at,
+								data[i].tweet_url)
+						);
 				  	gallery_scope.items.push({image_url: data[i].url});
 				  }
 			  });
@@ -57,7 +69,16 @@ mapControllers.controller('MapCtrl', function($scope, $http) {
 
 	$http.get('/v1/tweets').success(function(data) {
 		for (var i = 0; i < data.length; i++) {
-	  	$scope.map.markers.push(makeMarker(data[i].lat, data[i].lon, data[i].text, data[i].url));
+	  	$scope.map.markers.push(
+				makeMarker(
+					data[i].lat, 
+					data[i].lon, 
+					data[i].text, 
+					data[i].url, 
+					data[i].screen_name, 
+					data[i].tweet_created_at,
+					data[i].tweet_url)
+	  	);
 	  }
   });
 
