@@ -76,7 +76,7 @@ namespace :scheduler do
     logger.info "Duration: #{(end_time - start_time).round(1)} sec."
   end
 
-	desc "Get sakura tweets"
+	desc "Remove duplicated tweets"
   task :remove_duplicated_tweets => :environment do
   	ids = Tweet.all.uniq.pluck(:tweet_id)
   	ids.each do |tweet_id|
@@ -84,5 +84,34 @@ namespace :scheduler do
   		tweets.first.destroy if tweets.count > 1
   	end
   end
+
+  desc "Remove 404 photos"
+  task :remove_404_tweets => :environment do
+  	Tweet.unchecked.order(:id).limit(50).each do |tweet|
+      begin
+	      res = fetch(tweet.url)
+	      if res.code == "200"
+	      	tweet.update_attribute(:checked, true)
+	      else
+	      	tweet.destroy
+	      end
+	    rescue => e
+	      puts "[XXX] #{tweet.url}\n\t#{e}"
+	    end
+		end
+	end
+
+	def fetch(url, limit=10)
+    raise ArgumentError, 'HTTP Redirect is too deep!' if limit == 0
+    res = Net::HTTP.get_response(URI.parse(url))
+    case res
+    when Net::HTTPSuccess
+    	res
+    when Net::HTTPRedirection
+    	fetch(res['location'], limit - 1)
+    else
+    	res
+    end
+	end
 
 end

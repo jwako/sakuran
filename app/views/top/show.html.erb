@@ -14,7 +14,7 @@
           icon="marker.icon"
           click="onMarkerClicked(marker)">
         <window show="marker.showWindow">
-          <img ng-src="{{marker.url}}" width="200px;" class="img-responsive" />
+          <img ng-src="{{marker.url}}" width="200px;" class="img-responsive" ng-click="focusImage(marker)" />
           <p class="text-muted text-right">
 	          <small>{{marker.tweet_created_at}}</small>
           	<small><a href="{{marker.tweet_url}}" target="_blank">@{{marker.screen_name}}</a></small>
@@ -26,9 +26,10 @@
 </div>
 
 <div class="col-xs-12 col-md-6">
+	<div id="zoom"></div>
 	<div id="gallery" ng-controller="GalleryCtrl">
-  	<div class="thumb col-xs-12 col-sm-6 col-md-4" ng-repeat="item in items">
-			<img ng-src="{{item.image_url}}" class="img-thumbnail img-responsive">
+  	<div class="thumb col-xs-12 col-sm-6 col-md-4" ng-repeat="tweet in tweets">
+			<img ng-src="{{tweet.image_url}}" class="img-thumbnail img-responsive" ng-click="focusMarker(tweet)" />
   	</div>
 	</div>
 </div>

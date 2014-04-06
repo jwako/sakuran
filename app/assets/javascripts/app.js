@@ -1,5 +1,6 @@
 var sakuranApp = angular.module('sakuranApp', [
-	'mapControllers'
+	'mapControllers',
+	'mapServices'
 ]);
 
 // For turbolinks

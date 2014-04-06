@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323133246) do
+ActiveRecord::Schema.define(version: 20140406050641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140323133246) do
     t.datetime "updated_at"
     t.string   "prefecture"
     t.string   "city"
+    t.boolean  "checked",                                              default: false, null: false
   end
 
   add_index "tweets", ["rating"], name: "index_tweets_on_rating", using: :btree
