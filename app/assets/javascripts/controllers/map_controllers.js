@@ -1,23 +1,6 @@
 var mapControllers = angular.module('mapControllers', ['google-maps']);
 
 mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
-
-  var makeMarker = function(no, lat,lon,url,screen_name,tweet_created_at,tweet_url) {
-    var marker = {
-    	no: no,
-      mcoords: {
-        latitude: lat,
-        longitude: lon
-      },
-      url: url,
-      screen_name: screen_name,
-      tweet_created_at: tweet_created_at,
-      tweet_url: tweet_url,
-      icon: '/assets/flower.png',
-      showWindow: false
-    };
-    return marker;
-  };
   
 	$scope.onMarkerClicked = function(marker) {
     _.each($scope.map.markers, function(mker) {
@@ -42,53 +25,37 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
   			$scope.map.markers = [];
 	      var map = $scope.map.control.getGMap();
 	      var bounds = map.getBounds();
-		    map_ne_lat = bounds.getNorthEast().lat();
-		    map_sw_lat = bounds.getSouthWest().lat();
-		    map_ne_lng = bounds.getNorthEast().lng();
-		    map_sw_lng = bounds.getSouthWest().lng();
-    		Marker.get(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
-					for (var i = 0; i < marker.data.length; i++) {
-						$scope.map.markers.push(
-							makeMarker(
-								i,
-								marker.data[i].lat, 
-								marker.data[i].lon, 
-								marker.data[i].url, 
-								marker.data[i].screen_name, 
-								marker.data[i].tweet_created_at,
-								marker.data[i].tweet_url)
-						);
-				  	gallery_scope.tweets.push({no: i, image_url: marker.data[i].url});
-				  }
-    		});
+		    Marker.get(
+		    	bounds.getNorthEast().lat(), 
+		    	bounds.getSouthWest().lat(), 
+		    	bounds.getNorthEast().lng(), 
+		    	bounds.getSouthWest().lng())
+		    .then(function (markers){
+		    	$scope.map.markers = markers;
+		    	for (var i = 0; i < markers.length; i++) {
+			    	gallery_scope.tweets.push({no: i, image_url: markers[i].url});
+			    }
+		    });
       },
     	zoom_changed: function () {
     	},
 	    dragend: function () {
-		    var gallery_scope = angular.element('#gallery').scope();
+	    	var gallery_scope = angular.element('#gallery').scope();
 		    gallery_scope.tweets = [];
   			$scope.map.markers = [];
 	      var map = $scope.map.control.getGMap();
 	      var bounds = map.getBounds();
-		    map_ne_lat = bounds.getNorthEast().lat();
-		    map_sw_lat = bounds.getSouthWest().lat();
-		    map_ne_lng = bounds.getNorthEast().lng();
-		    map_sw_lng = bounds.getSouthWest().lng();
-    		Marker.get(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
-					for (var i = 0; i < marker.data.length; i++) {
-						$scope.map.markers.push(
-							makeMarker(
-								i,
-								marker.data[i].lat, 
-								marker.data[i].lon, 
-								marker.data[i].url, 
-								marker.data[i].screen_name, 
-								marker.data[i].tweet_created_at,
-								marker.data[i].tweet_url)
-						);
-				  	gallery_scope.tweets.push({no: i, image_url: marker.data[i].url});
-				  }
-    		});
+		    Marker.get(
+		    	bounds.getNorthEast().lat(), 
+		    	bounds.getSouthWest().lat(), 
+		    	bounds.getNorthEast().lng(), 
+		    	bounds.getSouthWest().lng())
+		    .then(function (markers){
+		    	$scope.map.markers = markers;
+		    	for (var i = 0; i < markers.length; i++) {
+			    	gallery_scope.tweets.push({no: i, image_url: markers[i].url});
+			    }
+		    });
 			}
     }
 	};
