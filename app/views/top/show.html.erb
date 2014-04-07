@@ -29,7 +29,12 @@
 	<div id="zoom"></div>
 	<div id="gallery" ng-controller="GalleryCtrl">
   	<div class="thumb col-xs-12 col-sm-6 col-md-4" ng-repeat="tweet in tweets">
+  		<p>{{tweet.image_url}}</p>
+<%
+=begin%>
 			<img ng-src="{{tweet.image_url}}" class="img-thumbnail img-responsive" ng-click="focusMarker(tweet)" />
+<%
+=end%>
   	</div>
 	</div>
 </div>

@@ -46,7 +46,7 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 		    map_sw_lat = bounds.getSouthWest().lat();
 		    map_ne_lng = bounds.getNorthEast().lng();
 		    map_sw_lng = bounds.getSouthWest().lng();
-    		Marker.getMarkers(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
+    		Marker.get(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
 					for (var i = 0; i < marker.data.length; i++) {
 						$scope.map.markers.push(
 							makeMarker(
@@ -74,7 +74,7 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 		    map_sw_lat = bounds.getSouthWest().lat();
 		    map_ne_lng = bounds.getNorthEast().lng();
 		    map_sw_lng = bounds.getSouthWest().lng();
-    		Marker.getMarkers(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
+    		Marker.get(map_ne_lat, map_sw_lat, map_ne_lng, map_sw_lng).then(function(marker){
 					for (var i = 0; i < marker.data.length; i++) {
 						$scope.map.markers.push(
 							makeMarker(
