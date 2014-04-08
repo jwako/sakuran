@@ -44,7 +44,7 @@ namespace :scheduler do
 		  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 		end
 
-		client.search("#桜2014 OR #桜 OR #花見 filter:links", 
+		client.search("#桜2014 OR #桜 OR #花見 OR 桜 filter:links", 
 			count: 100, 
 			result_type: "mixed", 
 			lang: 'ja', 
