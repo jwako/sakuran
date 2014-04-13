@@ -4,5 +4,6 @@ module Base
 		format :json
 
 		mount TwitterClient::API
+		mount LocationClient::API
 	end
 end

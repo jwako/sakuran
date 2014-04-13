@@ -3,7 +3,7 @@ module TwitterClient
 	class API < Grape::API
 		formatter :json, Grape::Formatter::Rabl
 
-		desc "Returns books based on browse node id from Amazon"
+		desc "Returns tweets with geo code and url"
 		get '/tweets', :rabl => "tweet" do
 			ne_lat = params[:ne_lat].blank? ? "" : params[:ne_lat].to_f
 			sw_lat = params[:sw_lat].blank? ? "" : params[:sw_lat].to_f

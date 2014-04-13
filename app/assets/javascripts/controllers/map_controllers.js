@@ -80,3 +80,18 @@ mapControllers.controller('GalleryCtrl', function($scope, $http) {
 		marker.showWindow = true;
   }
 });
+
+mapControllers.controller('SearchCtrl', function($scope, $http) {
+	$scope.searchLocation = function() {
+		$http.get('/v1/locations', { 
+	    	params: { 
+	    		location: $scope.location
+	    	}
+	    }).then(function (response){
+	    	var map_scope = angular.element('#map').scope();
+	    	map_scope.map.center.latitude = response.data.location.lat;
+	    	map_scope.map.center.longitude = response.data.location.lng;
+	    	map_scope.map.zoom = 15;
+		});
+	};
+});

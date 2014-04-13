@@ -9,5 +9,15 @@
       </button>
       <%= link_to 'Sakura Viewing', root_path, class: "navbar-brand" %>
     </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li style="margin-top:5px; margin-left:50px;">
+        <form ng-submit="searchLocation()" ng-controller="SearchCtrl">
+          <input type="text" ng-model="location" placeholder="Search for a place" class="form-control" style="height:40px;">
+          <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+        </form>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
