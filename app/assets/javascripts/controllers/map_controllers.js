@@ -13,10 +13,10 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 		control:{},
 		markers: [],
     center: {
-    	latitude: 0,
-    	longitude: 0
+    	latitude: 35.688156,
+    	longitude: 139.745957
     },
-    zoom: 6,
+    zoom: 15,
     dragging: true,
     events: {
     	tilesloaded: function (map, eventName, originalEventArgs) {
@@ -61,10 +61,16 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 	};
 
   $http.get('/assets/models/cities.json').then(function(res) {
-  	var rand = Math.floor(Math.random()*res.data.length)
-  	$scope.map.center.latitude = res.data[rand].latitude;
-    $scope.map.center.longitude = res.data[rand].longitude;
-    $scope.map.zoom = 15;
+  	var rand = Math.floor(Math.random()*res.data.length);
+  	$http.get('/v1/locations', { 
+	    	params: { 
+	    		location: res.data[rand].city
+	    	}
+	    }).then(function (response){
+	    	$scope.map.center.latitude = response.data.location.lat;
+	    	$scope.map.center.longitude = response.data.location.lng;
+	    	$scope.map.zoom = 15;
+		});
   });
 
 });
