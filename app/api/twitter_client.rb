@@ -10,9 +10,9 @@ module TwitterClient
 			ne_lng = params[:ne_lng].blank? ? "" : params[:ne_lng].to_f
 			sw_lng = params[:sw_lng].blank? ? "" : params[:sw_lng].to_f
 			if ne_lat.present? && sw_lat.present? && ne_lng.present? && sw_lng.present?
-				@tweets = Tweet.where(lat: sw_lat..ne_lat, lon: sw_lng..ne_lng).sample(25)
+				@tweets = Tweet.where(lat: sw_lat..ne_lat, lon: sw_lng..ne_lng).sample(25).uniq
 			else
-				@tweets = Tweet.all.sample(25)
+				@tweets = Tweet.all.sample(25).uniq
 			end
 		end
 	end
