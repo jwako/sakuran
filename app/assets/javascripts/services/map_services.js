@@ -2,7 +2,7 @@ var mapServices = angular.module('mapServices', []);
 
 mapServices.factory('Marker', function($http) {
 	
-	var makeMarker = function(no, lat,lon,url,screen_name,tweet_created_at,tweet_url) {
+	var makeMarker = function(no,lat,lon,url,screen_name,tweet_created_at,tweet_url) {
     var marker = {
     	no: no,
       mcoords: {
@@ -13,7 +13,6 @@ mapServices.factory('Marker', function($http) {
       screen_name: screen_name,
       tweet_created_at: tweet_created_at,
       tweet_url: tweet_url,
-      icon: '/assets/flower.png',
       showWindow: false
     };
     return marker;
