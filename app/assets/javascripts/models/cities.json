@@ -38,30 +38,5 @@
   	"city": "福岡",
     "latitude": 33.590355,
     "longitude": 130.401716
-  },
-  {
-  	"city": "松本",
-    "latitude": 36.238038,
-    "longitude": 137.972034
-  },
-  {
-  	"city": "新潟",
-    "latitude": 37.916192,
-    "longitude": 139.036413
-  },
-  {
-  	"city": "福島",
-    "latitude": 37.760834,
-    "longitude": 140.474728
-  }, 
-  {
-  	"city": "秋田",
-    "latitude": 39.718614,
-    "longitude": 140.102364
-  },
-  {
-  	"city": "札幌",
-    "latitude": 43.062096,
-    "longitude": 141.354376
   }
 ]

@@ -67,11 +67,6 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
     $scope.map.zoom = 15;
   });
 
-	$scope.focusImage = function(marker) {
-		var gallery_scope = angular.element('#gallery').scope();
-		var tweet = gallery_scope.tweets[marker.no];
-		$("#zoom").append("<img href='" + tweet.url + " '>");
-	}
 });
 
 mapControllers.controller('GalleryCtrl', function($scope, $http) {

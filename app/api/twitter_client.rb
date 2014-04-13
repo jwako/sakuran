@@ -12,7 +12,7 @@ module TwitterClient
 			if ne_lat.present? && sw_lat.present? && ne_lng.present? && sw_lng.present?
 				@tweets = Tweet.where(lat: sw_lat..ne_lat, lon: sw_lng..ne_lng).sample(25)
 			else
-				@tweets = Tweet.all.sample(50)
+				@tweets = Tweet.all.sample(25)
 			end
 		end
 	end

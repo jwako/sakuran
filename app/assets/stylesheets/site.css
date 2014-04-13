@@ -1,5 +1,9 @@
+#footer {
+  margin-top: 10px;
+}
+
 .navbar-brand {
-	color: #FFF !important; 
+	color: #FFF !important;
 }
 
 .navbar-custom {
@@ -36,3 +40,20 @@
 	margin: 2px 0;
 }
 
+img {
+  -ms-interpolation-mode: bicubic;
+}
+.image-resize {
+  max-width: 150px;
+  max-height: 150px;
+}
+* html body .image-resize {
+  width: expression(this.width >= this.height ? "150px" : "auto");
+  height: expression(this.width <= this.height ? "150px" : "auto");
+}
+
+.fixed-height-box {
+  margin: 10px 0 0 0;
+  height: 560px;
+  overflow: scroll;
+}

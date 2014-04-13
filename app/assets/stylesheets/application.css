@@ -9,6 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap
- *= require bootflatv2/bootflat/css/bootflat
+ *= require bootflatv2/bootflat/css/bootflat.min
  *= require_tree .
  */
