@@ -2,9 +2,10 @@ var mapServices = angular.module('mapServices', []);
 
 mapServices.factory('Marker', function($http) {
 	
-	var makeMarker = function(no,lat,lon,url,screen_name,tweet_created_at,tweet_url) {
+	var makeMarker = function(no,id,lat,lon,url,screen_name,tweet_created_at,tweet_url) {
     var marker = {
     	no: no,
+    	id: id,
       mcoords: {
         latitude: lat,
         longitude: lon
@@ -32,6 +33,7 @@ mapServices.factory('Marker', function($http) {
 				for (var i = 0; i < response.data.length; i++) {
 	    		markers.push(makeMarker(
 						i,
+						response.data[i].id,
 						response.data[i].lat, 
 						response.data[i].lon, 
 						response.data[i].url, 

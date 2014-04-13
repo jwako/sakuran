@@ -6,8 +6,10 @@
 <div class="row">
 	<% @tweets.each do |tweet| %>
 	<div class="col-xs-12 col-sm-6 col-md-2">
-		<%= check_box_tag "ids[]", "#{tweet.id}" %>
+		<%= check_box_tag "ids[]", "#{tweet.id}", false, {id: "ids_#{tweet.id}"} %>
+		<%= label "ids_", "#{tweet.id}" do %>
 		<%= image_tag(tweet.url, class: "img-thumbnail img-responsive") %>
+		<% end %>
 	</div>
 	<% end %>
 </div>

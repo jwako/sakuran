@@ -1,0 +1,46 @@
+<div class="row">
+<div class="col-xs-12 col-md-6">
+	<div id="map" ng-controller="MapCtrl">
+		<google-map 
+			center="map.center" 
+			zoom="map.zoom" 
+			draggable="true" 
+			dragging="map.dragging" 
+			events="map.events" 
+			control="map.control" 
+			refresh="true">
+			<marker ng-repeat="marker in map.markers" 
+          coords="marker.mcoords"
+          icon="marker.icon"
+          click="onMarkerClicked(marker)">
+        <window show="marker.showWindow">
+          <img ng-src="{{marker.url}}" class="img-responsive image-resize" ng-cloak>
+          <p class="text-muted text-right">
+	          <small>{{marker.tweet_created_at}}</small>
+          	<small><a href="{{marker.tweet_url}}" target="_blank">@{{marker.screen_name}}</a></small>
+          </p>
+        </window>
+      </marker>
+		</google-map>
+	</div>
+</div>
+
+<div class="col-xs-12 col-md-6">
+	<div id="zoom"></div>
+	<div id="gallery" ng-controller="GalleryCtrl" class="fixed-height-box">
+		<%= form_tag(managers_path) do %>
+  	<div class="thumb col-xs-12 col-sm-6 col-md-4" ng-repeat="tweet in tweets">
+  		<input id="ids_{{tweet.id}}" name="ids[]" type="checkbox" value="{{tweet.id}}">
+  		<label for="ids_{{tweet.id}}">
+			<img ng-src="{{tweet.image_url}}" class="img-thumbnail img-responsive image-resize" />
+			</label>
+  	</div>
+  	<div class="row">
+  	<div class="col-xs-12">
+  	<%= submit_tag 'DELETE', :disable_with => 'Please wait...', class: "btn btn-primary pull-right" %>
+  	</div>
+  	</div>
+  	<% end %>
+	</div>
+</div>
+</div>

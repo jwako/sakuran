@@ -33,7 +33,7 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 		    .then(function (markers){
 		    	$scope.map.markers = markers;
 		    	for (var i = 0; i < markers.length; i++) {
-			    	gallery_scope.tweets.push({no: i, image_url: markers[i].url});
+			    	gallery_scope.tweets.push({no: i, id: markers[i].id, image_url: markers[i].url});
 			    }
 		    });
       },
@@ -53,7 +53,7 @@ mapControllers.controller('MapCtrl', function($scope, $http, Marker) {
 		    .then(function (markers){
 		    	$scope.map.markers = markers;
 		    	for (var i = 0; i < markers.length; i++) {
-			    	gallery_scope.tweets.push({no: i, image_url: markers[i].url});
+			    	gallery_scope.tweets.push({no: i, id: markers[i].id, image_url: markers[i].url});
 			    }
 		    });
 			}
