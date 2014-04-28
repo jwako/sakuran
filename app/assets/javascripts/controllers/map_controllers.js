@@ -101,3 +101,44 @@ mapControllers.controller('SearchCtrl', function($scope, $http) {
 		});
 	};
 });
+
+mapControllers.controller('PhotoDetailCtrl', function($scope, $http, $location, Marker) {
+
+	$scope.map = {
+		control:{},
+		markers: [],
+    center: {
+    	latitude: 35.688156,
+    	longitude: 139.745957
+    },
+    zoom: 14,
+    dragging: false,
+    draggable: false,
+    events: {
+    	tilesloaded: function (map, eventName, originalEventArgs) {
+    		var tweet_id = $location.absUrl().split('/photos/')[1];
+    		$http.get('/v1/tweets/' + tweet_id
+    			).then(function (response){
+    			$scope.map.center.latitude  = parseFloat(response.data.lat);
+	    		$scope.map.center.longitude = parseFloat(response.data.lon);
+	    		$scope.map.zoom = 15;
+					$scope.map.markers.push({
+			    	no: 0,
+			    	id: response.data.id,
+			      mcoords: {
+			        latitude:  response.data.lat,
+			        longitude: response.data.lon
+			      },
+			      url: response.data.url,
+			      screen_name: response.data.screen_name,
+			      screen_name: response.data.screen_name,
+			      tweet_created_at: response.data.tweet_created_at,
+			      tweet_url: '',
+			      showWindow: true
+				   });
+				});
+    	}
+    }
+	};
+
+});

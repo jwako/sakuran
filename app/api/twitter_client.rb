@@ -15,5 +15,10 @@ module TwitterClient
 				@tweets = Tweet.all.sample(25).uniq
 			end
 		end
+
+		get '/tweets/:id', :rable => "tweet" do
+			@tweets = Tweet.find(params[:id])
+		end
+
 	end
 end

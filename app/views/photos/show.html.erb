@@ -1,0 +1,56 @@
+<style>
+.angular-google-map-container { height: 250px; }
+</style>
+
+<div class="row">
+
+<div class="col-xs-9">
+	<div class="picture">
+	<%= image_tag @tweet.url, class: "img-thumbnail img-responsive" %>
+	</div>
+
+</div>
+
+<div class="col-xs-3">
+
+<div class="panel panel-primary">
+<div class="panel-heading">Information</div>
+<div class="panel-body">
+	<p><%= link_to ("@" + @tweet.screen_name), URI.extract(@tweet.text)[0], target: "_blank" %></p>
+	<p><%= @tweet.text %></p>
+	<p class="text-mute text-right"><%= @tweet.tweet_created_at.strftime("%y/%m/%d") %></p>
+</div>
+</div>
+
+<div class="panel panel-primary">
+<div class="panel-heading">Map</div>
+<div class="panel-body">
+	<div id="map" ng-controller="PhotoDetailCtrl">
+		<google-map 
+			center="map.center" 
+			zoom="map.zoom" 
+			draggable="map.draggable" 
+			dragging="map.dragging" 
+			events="map.events" 
+			control="map.control" 
+			refresh="true">
+			<marker ng-repeat="marker in map.markers" 
+          coords="marker.mcoords"
+          icon="marker.icon"
+          click="">
+      </marker>
+		</google-map>
+	</div>
+</div>
+</div>
+
+<div class="panel panel-primary">
+<div class="panel-heading">Photo details</div>
+<div class="panel-body">
+
+</div>
+</div>
+
+</div>
+
+</div>
