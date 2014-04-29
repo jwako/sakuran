@@ -5,9 +5,11 @@
 Tweet.where("prefecture = ?", "").each do |tweet|
 	geo = Sakuran::Geo.new(:latitude => tweet.lat, :longitude => tweet.lon, :lang => :ja)
 	tweet.update_attributes!(prefecture: geo.prefecture, city: geo.city)
+	sleep(5)
 end
 
 Tweet.where("prefecture = ?", "日本").each do |tweet|
 	geo = Sakuran::Geo.new(:latitude => tweet.lat, :longitude => tweet.lon, :lang => :ja)
 	tweet.update_attributes!(prefecture: geo.city, city: geo.town)
+	sleep(5)
 end
