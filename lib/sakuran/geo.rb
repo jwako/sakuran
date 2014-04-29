@@ -28,5 +28,13 @@ module Sakuran
 			end
 		end
 
+		def town
+			if @address[0].blank? || @address[0].address_components.reverse[3].nil?
+				""
+			else
+				@address[0].address_components.reverse[3]["long_name"]
+			end
+		end
+
 	end
 end

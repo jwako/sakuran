@@ -123,18 +123,10 @@ mapControllers.controller('PhotoDetailCtrl', function($scope, $http, $location, 
 	    		$scope.map.center.longitude = parseFloat(response.data.lon);
 	    		$scope.map.zoom = 15;
 					$scope.map.markers.push({
-			    	no: 0,
-			    	id: response.data.id,
 			      mcoords: {
 			        latitude:  response.data.lat,
 			        longitude: response.data.lon
-			      },
-			      url: response.data.url,
-			      screen_name: response.data.screen_name,
-			      screen_name: response.data.screen_name,
-			      tweet_created_at: response.data.tweet_created_at,
-			      tweet_url: '',
-			      showWindow: true
+			      }
 				   });
 				});
     	}
