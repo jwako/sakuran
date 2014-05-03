@@ -2,12 +2,21 @@
 .angular-google-map-container { height: 250px; }
 </style>
 
-<div class="row">
+<div class="row" ng-controller="PhotoDetailCtrl">
 
 <div class="col-xs-8">
 	<div class="picture">
-	<%= image_tag @tweet.url, class: "img-thumbnail img-responsive" %>
+		<img ng-src="{{map.markers[0].url}}" class="img-thumbnail img-responsive" ng-cloak>
 	</div>
+
+	<br>
+	<ul class="list-inline">
+		<li ng-repeat="tweet in tweets">
+		<a href="/photos/{{tweet.id}}">
+			<img ng-src="{{tweet.image_url}}" class="img-thumbnail img-responsive image-resize" />
+		</a>
+		</li>
+	</ul>
 </div>
 
 <div class="col-xs-4">
@@ -15,16 +24,16 @@
 <div class="panel panel-danger">
 <div class="panel-heading">Information</div>
 <div class="panel-body">
-	<p><%= link_to ("@" + @tweet.screen_name), URI.extract(@tweet.text)[0], target: "_blank" %></p>
-	<p><%= @tweet.text %></p>
-	<p class="text-mute text-right"><%= @tweet.tweet_created_at.strftime("%y/%m/%d") %></p>
+	<p><a href="{{map.markers[0].tweet_url}}">@{{map.markers[0].screen_name}}</a></p>
+	<p>{{map.markers[0].text}}</p>
+	<p class="text-mute text-right">{{map.markers[0].tweet_created_at}}</p>
 </div>
 </div>
 
 <div class="panel panel-danger">
 <div class="panel-heading">Map</div>
 <div class="panel-body">
-	<div id="map" ng-controller="PhotoDetailCtrl">
+	<div id="map">
 		<google-map 
 			center="map.center" 
 			zoom="map.zoom" 

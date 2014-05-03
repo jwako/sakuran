@@ -117,17 +117,35 @@ mapControllers.controller('PhotoDetailCtrl', function($scope, $http, $location, 
     events: {
     	tilesloaded: function (map, eventName, originalEventArgs) {
     		var tweet_id = $location.absUrl().split('/photos/')[1];
-    		$http.get('/v1/tweets/' + tweet_id
+	      var gmap = $scope.map.control.getGMap();
+	      var bounds = gmap.getBounds();
+    		$http.get('/v1/tweets/' + tweet_id,
+    			{ params : {
+  						ne_lat : bounds.getNorthEast().lat(), 
+	    				sw_lat : bounds.getSouthWest().lat(), 
+	    				ne_lng : bounds.getNorthEast().lng(), 
+	    				sw_lng : bounds.getSouthWest().lng()
+    				}
+    			}
     			).then(function (response){
-    			$scope.map.center.latitude  = parseFloat(response.data.lat);
-	    		$scope.map.center.longitude = parseFloat(response.data.lon);
-	    		$scope.map.zoom = 15;
+    			$scope.map.center.latitude  = parseFloat(response.data[0].lat);
+	    		$scope.map.center.longitude = parseFloat(response.data[0].lon);
+	    		$scope.map.zoom = 14;
 					$scope.map.markers.push({
+						url: response.data[0].url,
 			      mcoords: {
-			        latitude:  response.data.lat,
-			        longitude: response.data.lon
-			      }
+			        latitude:  response.data[0].lat,
+			        longitude: response.data[0].lon
+			      },
+            screen_name: response.data[0].screen_name, 
+		    	  tweet_created_at: response.data[0].tweet_created_at,
+    		  	tweet_url: response.data[0].tweet_url,
+    		  	text: response.data[0].text
 				   });
+					$scope.tweets = [];
+					for (var i = 0; i < response.data[0].tweets.length; i++) {
+						$scope.tweets.push({no: i, id: response.data[0].tweets[i].id, image_url: response.data[0].tweets[i].url});
+					}
 				});
     	}
     }
