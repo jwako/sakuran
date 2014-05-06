@@ -92,9 +92,9 @@ mapControllers.controller('PhotoDetailCtrl', function($scope, $location, Marker)
     draggable: false,
     events: {
       tilesloaded: function(map, eventName, originalEventArgs) {
-        if ($scope.map.markers.length > 0) {
-          return false;
-        }
+        // if ($scope.map.markers.length > 0) {
+        //   return false;
+        // }
         var tweet_id = $location.absUrl().split('/photos/')[1];
         Marker.getOne(
           tweet_id,
