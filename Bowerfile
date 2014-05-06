@@ -8,7 +8,7 @@ asset 'angular-bootstrap'
 asset 'bootstrap'
 asset 'bootflatv2'
 asset 'angular-google-maps'
-
+asset 'd3'
 
 
 

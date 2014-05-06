@@ -5,5 +5,6 @@ module Base
 
 		mount TwitterClient::API
 		mount LocationClient::API
+		mount GraphClient::API
 	end
 end

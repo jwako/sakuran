@@ -18,5 +18,6 @@
 //= require angular-bootstrap
 //= require underscore/underscore-min
 //= require angular-google-maps
+//= require d3
 //= require app.js
 //= require_tree .
