@@ -66,10 +66,10 @@ group :test do
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-spork'
-  gem 'spork', '~> 1.0rc'  
+  gem 'spork', '~> 1.0rc'
   gem 'database_cleaner'
   gem 'meta_request', '0.2.1'
-  gem 'fuubar'  
+  gem 'fuubar'
 end
 
 # Use ActiveModel has_secure_password
@@ -83,3 +83,7 @@ gem 'unicorn'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :production do
+  gem 'newrelic_rpm'
+end
