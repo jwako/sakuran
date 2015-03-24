@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 
@@ -49,7 +51,7 @@ group :test, :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'pry-doc'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'quiet_assets'
   gem 'sextant'
   gem 'hirb'
