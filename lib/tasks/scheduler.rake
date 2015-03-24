@@ -36,7 +36,7 @@ namespace :scheduler do
     logger = Logger.new("log/sakura_tweets_#{Time.now.strftime('%Y_%m_%d_%H_%M')}.log")
     start_time = Time.now
     logger.info "search_sakura_tweets at #{start_time}"
-    
+
 		client = Twitter::REST::Client.new do |config|
 		  config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
 		  config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
@@ -44,11 +44,11 @@ namespace :scheduler do
 		  config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 		end
 
-		client.search("#桜2014 OR #桜 OR #花見 OR 桜 filter:links", 
-			count: 100, 
-			result_type: "mixed", 
-			lang: 'ja', 
-			since_id: Tweet.last.tweet_id,
+		client.search("#桜2014 OR #桜 OR #花見 OR 桜 filter:links",
+			count: 100,
+			result_type: "mixed",
+			lang: 'ja',
+			since_id: Tweet.last.try(:tweet_id),
 			include_entities: true
 		).sort{|a, b| a.id <=> b.id}.collect do |result|
 			if result.geo.present? && available_service?(result)
@@ -70,7 +70,7 @@ namespace :scheduler do
 				logger.info "ID: #{result.id}"
 			end
 		end
-		
+
     end_time = Time.now
     logger.info "successfully done at #{end_time}"
     logger.info "Duration: #{(end_time - start_time).round(1)} sec."
